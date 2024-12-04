@@ -1,11 +1,18 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
+import AlertModal from '@/components/alert/alertModal';
 
 export default function Task({ task, onChange, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   let taskContent;
+
+  function handleConfirmDelete() {
+    setIsOpen(true);
+  }
 
   if (isEditing) {
     taskContent = (
@@ -32,10 +39,11 @@ export default function Task({ task, onChange, onDelete }) {
   } else {
     taskContent = (
       <>
-        <div className={`task-content ${task.done ? 'label-done' : ''}`}>
+        <div className={`task-content ${task.done ? 'line-through' : ''}`}>
           {task.text}
         </div>
         <Button 
+          className="ml-auto"
           variant="outline"
           onClick={() => setIsEditing(true)}
         >
@@ -46,23 +54,30 @@ export default function Task({ task, onChange, onDelete }) {
   }
 
   return (
-    <label className="flex items-center gap-x-2">
-      <Checkbox 
-        checked={task.done}
-        onCheckedChange={(checked) => {
-          onChange({
-            ...task,
-            done: checked,
-          });
-        }}
+    <>
+      <label className="flex items-center gap-x-2">
+        <Checkbox 
+          checked={task.done}
+          onCheckedChange={(checked) => {
+            onChange({
+              ...task,
+              done: checked,
+            });
+          }}
+        />
+        {taskContent}
+        <Button 
+          variant="outline"
+          onClick={handleConfirmDelete}
+        >
+          Delete
+        </Button>
+      </label>  
+      <AlertModal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)} 
+        onDelete={() => onDelete(task.id)} 
       />
-      {taskContent}
-      <Button 
-        variant="outline"
-        onClick={() => onDelete(task.id)}
-      >
-        Delete
-      </Button>
-    </label>
+    </>
   );
 }

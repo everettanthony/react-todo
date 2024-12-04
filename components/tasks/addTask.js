@@ -5,6 +5,13 @@ import { Input } from '@/components/ui/input';
 export default function AddTask({ onAddTask }) {
     const [text, setText] = useState('');
 
+    function handleEnterKeyPress(e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            setText('');
+            onAddTask(e.target.value);
+        }
+    }
+
     return (
         <div className="flex">
             <Input
@@ -14,6 +21,7 @@ export default function AddTask({ onAddTask }) {
                 focus:bg-accent focus:placeholder:text-transparent border-r-0"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
+                onKeyUp={handleEnterKeyPress}
             />
             <Button 
                 variant="outline"

@@ -1,26 +1,46 @@
 export function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'added': {
-      return [
+      return {
         ...tasks,
-        {
-          id: action.id,
-          text: action.text,
-          done: false,
-        },
-      ];
+        items: [
+          {
+            id: action.id,
+            text: action.text,
+            done: false,
+          },
+          ...tasks.items
+        ],
+      };
     }
     case 'changed': {
-      return tasks.map((t) => {
-        if (t.id === action.task.id) {
-          return action.task;
-        } else {
-          return t;
-        }
-      });
+      return {
+        ...tasks,
+        items: tasks.items.map(item =>
+          item.id === action.task.id ? action.task : item
+        )
+      };
     }
     case 'deleted': {
-      return tasks.filter((t) => t.id !== action.id);
+      return {
+        ...tasks,
+        items: tasks.items.filter(item => item.id !== action.id)
+      };
+    }
+    case 'select': {
+      return {
+        ...tasks,
+        items: tasks.items.map(item =>
+          item.id === action.payload ? { ...item, done: !item.done } : item
+        )
+      }
+    }    
+    case 'select-all': {
+      return {
+        ...tasks,
+        selectAll: !tasks.selectAll,
+        items: tasks.items.map(item => ({ ...item, done: !tasks.selectAll }))
+      };
     }
     default: {
       throw Error('Unknown action: ' + action.type);

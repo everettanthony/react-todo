@@ -7,7 +7,7 @@ export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
           <div>Start adding some tasks to your list.</div>
         ) : (
           tasks.items.map((task) => (
-            <div key={task.id} className="mb-4">
+            <div key={task.id} className="[&:not(:last-child)]:mb-4">
               <Task task={task} onChange={onChangeTask} onDelete={onDeleteTask} />
             </div>
           ))

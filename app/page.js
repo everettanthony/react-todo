@@ -26,8 +26,6 @@ export default function Home() {
       type: 'changed',
       task: task,
     });
-
-    console.log(tasks);
   }
 
   function handleDeleteTask(taskId) {
@@ -43,13 +41,24 @@ export default function Home() {
     });    
   }
 
+  function handleDeleteAll() {
+    dispatch({
+      type: 'delete-all'
+    }); 
+  }
+
   return (
     <>
       <header className="py-3 px-5">
         <h1 className="text-xl font-semibold">My ToDo List</h1>
       </header>
       <AddTask onAddTask={handleAddTask} />
-      <Controls tasks={tasks} onSelectAll={handleSelectAll} />
+      {tasks.items.length > 0 && 
+        <Controls 
+          tasks={tasks} 
+          onSelectAll={handleSelectAll} 
+          onDeleteAll={handleDeleteAll} 
+        />}
       <TaskList
         tasks={tasks}
         onChangeTask={handleChangeTask}

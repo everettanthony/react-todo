@@ -13,7 +13,7 @@ export default function AddTask({ onAddTask }) {
     }
 
     return (
-        <div className="flex">
+        <div className="flex mb-5 px-5">
             <Input
                 type="text"
                 placeholder="Add task"

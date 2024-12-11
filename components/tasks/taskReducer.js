@@ -42,6 +42,13 @@ export function tasksReducer(tasks, action) {
         items: tasks.items.map(item => ({ ...item, done: !tasks.selectAll }))
       };
     }
+    case 'delete-all': {
+      return {
+        ...tasks,
+        selectAll: false,
+        items: tasks.items.filter(item => !item.done)
+      };
+    }
     default: {
       throw Error('Unknown action: ' + action.type);
     }

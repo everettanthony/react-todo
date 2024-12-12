@@ -17,7 +17,7 @@ export default function Task({ task, onChange, onDelete }) {
     taskContent = (
       <>
         <Input 
-          className="task-update"
+          className="task-update bg-[#ecdcf3] focus-visible:ring-[#a06cd5]"
           type="text"
           value={task.text}
           onChange={(e) => {
@@ -28,6 +28,8 @@ export default function Task({ task, onChange, onDelete }) {
           }}
         />
         <Button 
+          className="bg-[#a06cd5] text-white 
+          hover:bg-[#6247aa] hover:text-white"
           variant="outline"
           onClick={() => setIsEditing(false)}
         >
@@ -42,7 +44,8 @@ export default function Task({ task, onChange, onDelete }) {
           {task.text}
         </div>
         <Button 
-          className="ml-auto"
+          className="ml-auto bg-[#a06cd5] text-white 
+          hover:bg-[#6247aa] hover:text-white"
           variant="outline"
           onClick={() => setIsEditing(true)}
         >
@@ -56,6 +59,8 @@ export default function Task({ task, onChange, onDelete }) {
     <>
       <label className="flex items-center gap-x-2">
         <Checkbox 
+          className="bg-[#e2cfea] data-[state=checked]:text-white 
+          data-[state=checked]:bg-[#a06cd5] border-[#6247aa]"
           checked={task.done}
           onCheckedChange={(checked) => {
             onChange({
@@ -66,6 +71,8 @@ export default function Task({ task, onChange, onDelete }) {
         />
         {taskContent}
         <Button 
+          className="bg-[#a06cd5] text-white 
+          hover:bg-[#6247aa] hover:text-white"
           variant="outline"
           onClick={handleConfirmDelete}
         >

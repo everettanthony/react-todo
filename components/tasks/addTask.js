@@ -17,15 +17,16 @@ export default function AddTask({ onAddTask }) {
             <Input
                 type="text"
                 placeholder="Add task"
-                className="px-5 h-10 rounded-none focus-visible:ring-0
-                focus:bg-accent focus:placeholder:text-transparent border-r-0"
+                className="px-5 h-10 rounded-none bg-[#ecdcf3] focus-visible:ring-0
+                placeholder:text-[#b17fe4] focus:placeholder:text-transparent border-r-0"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 onKeyUp={handleEnterKeyPress}
             />
             <Button 
                 variant="outline"
-                className="h-10 rounded-none"
+                className="h-10 rounded-none bg-[#a06cd5] 
+                text-white hover:bg-[#6247aa] hover:text-white"
                 onClick={() => {
                     setText('');
                     onAddTask(text);

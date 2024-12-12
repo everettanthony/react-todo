@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
       <header className="py-3 px-5">
-        <h1 className="text-xl font-semibold">My ToDo List</h1>
+        <h1 className="text-xl font-semibold text-[#6247aa]">My ToDo List</h1>
       </header>
       <AddTask onAddTask={handleAddTask} />
       {tasks.items.length > 0 && 

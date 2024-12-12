@@ -30,13 +30,18 @@ export default function Controls({ onSelectAll, onDeleteAll, tasks }) {
     return (
         <div className="p-5 pt-0 flex justify-between">
             <div>
-                <Button variant="outline" onClick={handleSelectAll}>
+                <Button 
+                    className="bg-[#a06cd5] text-white 
+                    hover:bg-[#6247aa] hover:text-white"
+                    variant="outline" 
+                    onClick={handleSelectAll}>
                     {allSelected ? 'Uncheck All' : 'Mark All Complete'}
                 </Button>
             </div>
             <div>
                 <Button 
-                    className="disabled:opacity-25"
+                    className="disabled:opacity-25 bg-[#a06cd5] 
+                    text-white hover:bg-[#6247aa] hover:text-white"
                     variant="outline"
                     onClick={handleConfirmDelete}
                     disabled={isDisabled}>

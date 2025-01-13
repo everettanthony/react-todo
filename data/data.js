@@ -4,5 +4,7 @@ export const initialState = {
         { id: 1, text: 'Feed the dogs', done: false },
         { id: 2, text: 'Drink coffee', done: false },
     ],
-    selectAll: false
+    selectAll: false,
+    sortBy: null,
+    sortOrder: 'asc'
 };

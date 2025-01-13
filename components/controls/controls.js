@@ -28,7 +28,7 @@ export default function Controls({ onSelectAll, onDeleteAll, tasks }) {
     }, [tasks]);
 
     return (
-        <div className="p-5 pt-0 flex justify-between">
+        <div className="p-5 pb-2 pt-0 flex justify-between">
             <div>
                 <Button 
                     className="bg-[#a06cd5] text-white 

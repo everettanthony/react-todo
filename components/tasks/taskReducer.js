@@ -49,6 +49,22 @@ export function tasksReducer(tasks, action) {
         items: tasks.items.filter(item => !item.done)
       };
     }
+    case 'sort': {
+      const { sortBy, sortOrder } = action.payload;
+      const sortedTasks = [...tasks.items].sort((a, b) => {       
+        if (a[sortBy] < b[sortBy]) {
+          return sortOrder === 'asc' ? -1 : 1;
+        } 
+        else if (a[sortBy] > b[sortBy]) {
+          return sortOrder === 'asc' ? 1 : -1;
+        } 
+        else {
+          return 0;
+        }
+      });    
+
+      return { ...tasks, items: sortedTasks, sortBy, sortOrder };  
+    }
     default: {
       throw Error('Unknown action: ' + action.type);
     }

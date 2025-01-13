@@ -47,6 +47,11 @@ export default function Home() {
     }); 
   }
 
+  function handleSort(sortBy) {
+    const newSortOrder = tasks.sortBy === sortBy && tasks.sortOrder === 'asc' ? 'desc' : 'asc';
+    dispatch({ type: 'sort', payload: { sortBy, sortOrder: newSortOrder } });
+  };
+
   return (
     <>
       <header className="py-3 px-5">
@@ -63,6 +68,7 @@ export default function Home() {
         tasks={tasks}
         onChangeTask={handleChangeTask}
         onDeleteTask={handleDeleteTask}
+        onSortTask={handleSort}
       />
     </>
   );
